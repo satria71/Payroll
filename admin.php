@@ -48,18 +48,24 @@ exit;
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Karyawan</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
-                            <a href="formInsertFasilitas.php" target="iframe_a">Harian Lepas</a>
+                            <a href="showKaryawanHr.php" target="iframe_a">Harian Lepas</a>
                         </li>
                         <li>
-                            <a href="formInsertKaryawan.php" target="iframe_a">Kontrak</a>
+                            <a href="showKaryawanKontrak.php" target="iframe_a">Kontrak</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="showKamar.php" target="iframe_a">Departement</a>
+                    <a href="showDepartemen.php" target="iframe_a">Departemen</a>
                 </li>
                 <li>
-                    <a href="showKaryawan.php" target="iframe_a">Absensi</a>
+                    <a href="showBagian.php" target="iframe_a">Bagian</a>
+                </li>
+                <li>
+                    <a href="showAbsensi.php" target="iframe_a">Absensi</a>
+                </li>
+                <li>
+                    <a href="showJadwal.php" target="iframe_a">Jadwal</a>
                 </li>
                 <li>
                     <a href="showFasilitas.php" target="iframe_a">Penggajian</a>
