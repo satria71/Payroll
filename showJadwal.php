@@ -19,13 +19,13 @@
 </head>
 <body>
 <?php
-    include 'helper/connection.php';
+    include 'pager.php';
 ?>
 
 <div class="container">
     <h3>Jadwal</h3>
 <hr>
-<a href="#" class="btn btn-primary" style="margin-bottom:10px;">Tambah</a>
+<a href="#" type="button" class="btn btn-primary btn-md" style="margin-bottom:10px;" data-toggle="modal" data-target="#myModalInput">Tambah</a>
 
 <table class="table table-stripped table-hover datatab" align="center">
     <thead>
@@ -60,8 +60,8 @@
     
     <!-- Button untuk modal -->
     <?php
-        $nip = $data["kode_jadwal"];
-        echo "<a href='proses/deleteKaryawan.php?id=$nip' class='btn btn-danger'>Delete</a>";
+        $kode_jadwal = $data["kode_jadwal"];
+        echo "<a href='proses/deleteKaryawan.php?id=$kode_jadwal' class='btn btn-danger'>Delete</a>";
     ?>
     </td>
 </tr>
@@ -74,38 +74,33 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Update Data Karyawan</h4>
+                <h4 class="modal-title">Update Jadwal</h4>
             </div>
         <div class="modal-body">
 
-        <form role="form" action="proses/prosesUpdateKaryawan.php" method="get">
+        <form role="form" action="proses/deleteJadwal.php" method="get">
 
         <?php
-        $id = $data['nik'];
-        $sql2 = "select nik, nama, jabatan, alamat, notelp
-                from tb_karyawan, tb_jabatan 
-                where tb_karyawan.kode_jabatan = tb_jabatan.kode_jabatan and status = 0 and nik='$id'";
+        $id = $data['kode_jadwal'];
+        $sql2 = "select kode_jadwal, departemen, masuk, keluar
+            from tb_jadwal, tb_departemen 
+            where tb_departemen.kode_departemen = tb_jadwal.kode_departemen and kode_jadwal='$id'";
         $query_edit = mysqli_query($con, $sql2);
         //$result = mysqli_query($conn, $query);
         while ($row = mysqli_fetch_array($query_edit)) {  
         ?>
 
             <div class="form-group">
-                <label>NIK</label>
+                <label>Kode Jadwal</label>
                 <input type="text" name="nip" class="form-control" value="<?php echo $row['0']; ?>" readonly="true">     
             </div>
 
             <div class="form-group">
-                <label>Nama</label>
-                <input type="text" name="nama" class="form-control" value="<?php echo $row['1']; ?>">      
-            </div>
-
-            <div class="form-group">
-                <label>Jabatan</label><br>
+                <label>Departemen</label><br>
                 <select name="jabatan">
                 <?php
                     include "helper/connection.php";
-                    $sql="select*from tb_jabatan";
+                    $sql="select*from tb_departemen";
                     $result = mysqli_query($con, $sql);
                     if(mysqli_num_rows($result)!=''){
                         while($tampil=mysqli_fetch_array($result, MYSQLI_NUM)){
@@ -123,13 +118,13 @@
             </div>
 
             <div class="form-group">
-                <label>Alamat</label>
-                <input type="text" name="alamat" class="form-control" value="<?php echo $row['3']; ?>">      
+                <label>Masuk</label>
+                <input type="text" name="alamat" class="form-control" value="<?php echo $row['2']; ?>">      
             </div>
 
             <div class="form-group">
-                <label>No Telepon</label>
-                <input type="text" name="no_tlp" class="form-control" value="<?php echo $row['4']; ?>">      
+                <label>Keluar</label>
+                <input type="text" name="no_tlp" class="form-control" value="<?php echo $row['3']; ?>">      
             </div>
 
             <div class="modal-footer">  

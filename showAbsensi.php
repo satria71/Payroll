@@ -19,7 +19,7 @@
 </head>
 <body>
 <?php
-    include 'helper/connection.php';
+    include 'pager.php';
 ?>
 
 <div class="container">
@@ -66,7 +66,7 @@
     <!-- Button untuk modal -->
     <?php
         $nip = $data["id"];
-        echo "<a href='proses/deleteKaryawan.php?id=$nip' class='btn btn-danger'>Delete</a>";
+        echo "<a href='proses/deleteAbsensi.php?id=$nip' class='btn btn-danger'>Delete</a>";
     ?>
     </td>
 </tr>
@@ -79,14 +79,14 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Update Data Karyawan</h4>
+                <h4 class="modal-title">Update Absensi</h4>
             </div>
         <div class="modal-body">
 
         <form role="form" action="proses/prosesUpdateKaryawan.php" method="get">
 
         <?php
-        $id = $data['nik'];
+        $id = $data['id'];
         $sql2 = "select nik, nama, jabatan, alamat, notelp
                 from tb_karyawan, tb_jabatan 
                 where tb_karyawan.kode_jabatan = tb_jabatan.kode_jabatan and status = 0 and nik='$id'";

@@ -19,7 +19,7 @@
 </head>
 <body>
 <?php
-    include 'helper/connection.php';
+    include 'pager.php';
 ?>
 
 <div class="container">
