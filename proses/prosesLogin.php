@@ -53,7 +53,7 @@
                 
             } else {
                 $error = urlencode("Username atau password salah!");
-                header("Location: ../login.php?pesan=$error");
+                header("Location: ../index.php?pesan=$error");
             }
 
             # Close connection to database

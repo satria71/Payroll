@@ -25,7 +25,7 @@
 <div class="container">
     <h3>Jadwal</h3>
 <hr>
-<a href="#" type="button" class="btn btn-primary btn-md" style="margin-bottom:10px;" data-toggle="modal" data-target="#myModalInput">Tambah</a>
+<button class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModalInput"><i class="fas fa-plus" style="margin-right:10px;"></i>Tambah</button><br><br>
 
 <table class="table table-stripped table-hover datatab" align="center">
     <thead>
@@ -54,14 +54,15 @@
     <td><?php echo $data['masuk']; ?></td>
     <td><?php echo $data['keluar']; ?></td>
     <td>
-    <!-- Button untuk modal -->
-    <i class="fas fa-edit"></i>
-    <a href="#" type="button" class="btn btn-success btn-md" data-toggle="modal" data-target="#myModal<?php echo $data['kode_jadwal']; ?>">Edit</a>
-    
-    <!-- Button untuk modal -->
+    <!-- Button untuk modal edit -->
+    <a href="#" data-toggle="modal" data-target="#myModal<?php echo $data['kode_jadwal']; ?>">
+        <button class="btn btn-success"><i class="fas fa-edit" style="margin-right:10px;"></i>Edit</button>
+    </a>
+
+    <!-- Button untuk delete -->
     <?php
-        $kode_jadwal = $data["kode_jadwal"];
-        echo "<a href='proses/deleteKaryawan.php?id=$kode_jadwal' class='btn btn-danger'>Delete</a>";
+        $kode_bagian = $data["kode_jadwal"];
+        echo "<a href='proses/deleteJadwal.php?id=$kode_bagian' class='btn btn-danger'><i class='fas fa-trash-alt' style='margin-right:10px;'></i>Delete</a>";
     ?>
     </td>
 </tr>
@@ -78,7 +79,7 @@
             </div>
         <div class="modal-body">
 
-        <form role="form" action="proses/deleteJadwal.php" method="get">
+        <form role="form" action="proses/prosesUpdateJadwal.php" method="POST">
 
         <?php
         $id = $data['kode_jadwal'];
@@ -92,12 +93,12 @@
 
             <div class="form-group">
                 <label>Kode Jadwal</label>
-                <input type="text" name="nip" class="form-control" value="<?php echo $row['0']; ?>" readonly="true">     
+                <input type="text" name="kode_jadwal" class="form-control" value="<?php echo $row['0']; ?>" readonly="true">     
             </div>
 
             <div class="form-group">
                 <label>Departemen</label><br>
-                <select name="jabatan">
+                <select name="departemen">
                 <?php
                     include "helper/connection.php";
                     $sql="select*from tb_departemen";
@@ -119,16 +120,16 @@
 
             <div class="form-group">
                 <label>Masuk</label>
-                <input type="text" name="alamat" class="form-control" value="<?php echo $row['2']; ?>">      
+                <input type="time" name="masuk" class="form-control" value="<?php echo $row['2']; ?>">      
             </div>
 
             <div class="form-group">
                 <label>Keluar</label>
-                <input type="text" name="no_tlp" class="form-control" value="<?php echo $row['3']; ?>">      
+                <input type="time" name="keluar" class="form-control" value="<?php echo $row['3']; ?>">      
             </div>
 
             <div class="modal-footer">  
-                <button type="submit" class="btn btn-success">Update</button>
+                <button type="submit" class="btn btn-success" name="submit">Update</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
 
@@ -147,6 +148,69 @@
 ?>
 </tbody>
 </table>          
+</div>
+
+
+<!-- Modal Input -->
+<div class="modal fade" id="myModalInput" role="dialog">
+    <div class="modal-dialog">
+
+<!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Tambah Jadwal</h4>
+            </div>
+        <div class="modal-body">
+
+        <form role="form" action="proses/prosesInsertJadwal.php" method="POST">
+
+            <div class="form-group">
+                <label>Kode Jadwal</label>
+                <input type="text" name="kode_jadwal" class="form-control" ?>     
+            </div>
+
+            <div class="form-group">
+                <label>Departemen</label><br>
+                <select name="departemen">
+                <?php
+                    include "helper/connection.php";
+                    $sql="select*from tb_departemen";
+                    $result = mysqli_query($con, $sql);
+                    if(mysqli_num_rows($result)!=''){
+                        while($tampil=mysqli_fetch_array($result, MYSQLI_NUM)){
+                ?>
+                    <option value="<?php echo $tampil[0] ?>"><?php echo $tampil[1] ?></option>;
+                <?php
+                        }
+                    }else{
+                ?>
+                    <option> Tidak ada data </option>
+                <?php
+                    }
+                ?>
+                </select><br/>
+            </div>
+
+            <div class="form-group">
+                <label>Masuk</label>
+                <input type="time" name="masuk" class="form-control">   
+            </div>
+
+            <div class="form-group">
+                <label>Keluar</label>
+                <input type="time" name="keluar" class="form-control" value="<?php $date = date("h:i A", strtotime($row['time_d'])); echo "$date"; ?>">     
+            </div>
+
+            <div class="modal-footer">  
+                <button type="submit" class="btn btn-success" name="submit">Tambah</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>       
+        </form>
+            </div>
+        </div>
+
+    </div>
 </div>
 
 </body>

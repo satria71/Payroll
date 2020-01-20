@@ -58,13 +58,19 @@
     <td><?php echo $data['notelp']; ?></td>
     <td>
     <!-- Button untuk modal -->
-    <i class="fas fa-edit"></i>
-    <a href="#" type="button" class="btn btn-success btn-md" data-toggle="modal" data-target="#myModal<?php echo $data['nik']; ?>">Edit</a>
-    
+    <!-- Button untuk modal -->
+    <a href="#" data-toggle="modal" data-target="#myModal<?php echo $data['nik']; ?>">
+        <button class="btn btn-success"><i class="fas fa-edit" style="margin-right:10px;"></i>Edit</button>
+    </a>
     <!-- Button untuk modal -->
     <?php
         $nip = $data["nik"];
-        echo "<a href='proses/deleteKaryawan.php?id=$nip' class='btn btn-danger'>Delete</a>";
+        echo "<a href='proses/deleteKaryawan.php?id=$nip' class='btn btn-danger'><i class='fas fa-trash-alt' style='margin-right:10px;'></i>Delete</a>";
+    ?>
+    <!-- Button untuk modal -->
+    <?php
+        $nip = $data["nik"];
+        echo "<a href='proses/detail.php?id=$nip' class='btn btn-info'><i class='fas fa-info-circle' style='margin-right:10px;'></i>Detail</a>";
     ?>
     </td>
 </tr>

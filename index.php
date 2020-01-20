@@ -1,4 +1,11 @@
-<<!DOCTYPE html>
+<?php
+    if(isset($_GET['pesan'])) {
+        $mess = "<p> {$_GET['pesan']}</p>";
+    } else {
+        $mess = "";
+    }
+?>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -29,7 +36,7 @@
                     <p>Masukkan Username dan Password</p>
                 </div>
                     <form action="proses/prosesLogin.php" method="POST">
-                    <!-- <?php echo $mess; ?> -->
+                    <?php echo $mess; ?>
                         <div class="form-group">
                             <input type="text" name="username" class="form-control" placeholder="Username">
                         </div>

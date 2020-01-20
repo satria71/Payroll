@@ -68,7 +68,7 @@ exit;
                     <a href="showJadwal.php" target="iframe_a">Jadwal</a>
                 </li>
                 <li>
-                    <a href="showFasilitas.php" target="iframe_a">Penggajian</a>
+                    <a href="showPenggajian.php" target="iframe_a">Penggajian</a>
                 </li>
             </ul>
         </nav>
@@ -88,6 +88,8 @@ exit;
                         <i class="fas fa-align-justify"></i>
                     </button>
 
+                    <h2 class="h2">Selamat Datang</h2>
+
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
                             <li class="nav-item">
@@ -102,7 +104,7 @@ exit;
             </nav>
             
             
-            <h2>Selamat Datang <h2>
+            <!-- <h2>Selamat Datang <h2> -->
             <!-- <iframe name="iframe_a" height="600" width="1070" style="border:none;"></iframe> -->
                 <div class="embed-responsive embed-responsive-21by9">
                     <iframe class="embed-responsive-item" name="iframe_a" style="border:none;" allowfullscreen></iframe>

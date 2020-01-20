@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="main.css">
     <script src="main.js"></script>
 
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -25,6 +26,9 @@
 <div class="container">
     <h3>Data Absensi</h3>
 <hr>
+
+<button class="btn btn-primary" style="margin-rigth:10px;"><i class="fas fa-download" style="margin-right:10px;"></i>Download Absensi</button>
+<button class="btn btn-info"><i class="fas fa-save" style="margin-right:10px;"></i>Simpan data</button><br><br>
 
 <table class="table table-stripped table-hover datatab" align="center">
     <thead>
@@ -60,13 +64,14 @@
     <td><?php echo $data['jumlah_jam']; ?></td>
     <td>
     <!-- Button untuk modal -->
-    <i class="fas fa-edit"></i>
-    <a href="#" type="button" class="btn btn-success btn-md" data-toggle="modal" data-target="#myModal<?php echo $data['id']; ?>">Edit</a>
+    <a href="#" data-toggle="modal" data-target="#myModal<?php echo $data['id']; ?>">
+        <button class="btn btn-success"><i class="fas fa-edit" style="margin-right:10px;"></i>Edit</button>
+    </a>
     
     <!-- Button untuk modal -->
     <?php
         $nip = $data["id"];
-        echo "<a href='proses/deleteAbsensi.php?id=$nip' class='btn btn-danger'>Delete</a>";
+        echo "<a href='proses/deleteAbsensi.php?id=$nip' class='btn btn-danger'><i class='fas fa-trash-alt' style='margin-right:10px;'></i>Delete</a>";
     ?>
     </td>
 </tr>

@@ -26,7 +26,7 @@
 <div class="container">
     <h3>Departemen dan Bagian</h3>
 <hr>
-<a href="#" type="button" class="btn btn-primary btn-md" style="margin-bottom:10px;" data-toggle="modal" data-target="#myModalInput">Tambah</a>
+<button class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModalInput"><i class="fas fa-plus" style="margin-right:10px;"></i>Tambah</button><br><br>
 
 <table class="table table-stripped table-hover datatab" align="center">
     <thead>
@@ -53,14 +53,14 @@
     <td><?php echo $data['bagian']; ?></td>
     <td><?php echo $data['departemen']; ?></td>
     <td>
-    <!-- Button untuk modal -->
-    <i class="fas fa-edit"></i>
-    <a href="#" type="button" class="btn btn-success btn-md" data-toggle="modal" data-target="#myModal<?php echo $data['kode_bagian']; ?>">Edit</a>
-    
-    <!-- Button untuk modal -->
+    <!-- Button untuk modal edit -->
+    <a href="#" data-toggle="modal" data-target="#myModal<?php echo $data['kode_bagian']; ?>">
+        <button class="btn btn-success"><i class="fas fa-edit" style="margin-right:10px;"></i>Edit</button>
+    </a>
+    <!-- Button untuk delete -->
     <?php
-       $id = $data["kode_bagian"];
-       echo "<a href='proses/deleteBagian.php?id=$id' class='btn btn-danger'>Delete</a>";
+        $kode_bagian = $data["kode_bagian"];
+        echo "<a href='proses/deleteBagian.php?id=$kode_bagian' class='btn btn-danger'><i class='fas fa-trash-alt' style='margin-right:10px;'></i>Delete</a>";
     ?>
     </td>
 </tr>
