@@ -93,7 +93,7 @@ exit;
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
                             <li class="nav-item">
-                                <p class="nav-link">Admin <?php echo $nama; ?><p>
+                                <p class="nav-link"><i class="fas fa-user"></i> Admin <?php echo $nama; ?><p>
                             </li>
                             <li class="nav-item active">
                                 <p><a class="nav-link" href="logout.php">Logout</a></p>

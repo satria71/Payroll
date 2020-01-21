@@ -64,9 +64,13 @@
 <tbody>
 
 <?php 
+
+    $tgl_awal = $_POST["tgl_awal"];
+    $tgl_akhir = $_POST["tgl_akhir"];
     $sql = "select id, nama, departemen, tanggal, masuk, keluar, jumlah_jam
         from tb_karyawan, tb_departemen, tb_absensi 
-        where tb_karyawan.nik = tb_absensi.nik and tb_departemen.kode_departemen = tb_absensi.kode_departemen";
+        where tb_karyawan.nik = tb_absensi.nik and tb_departemen.kode_departemen = tb_absensi.kode_departemen
+        and (tanggal BETWEEN '$tgl_awal' AND '$tgl_akhir')";
     
     $query = mysqli_query($con, $sql);
     $no = 1;
