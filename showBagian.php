@@ -23,7 +23,7 @@
     include 'pager.php';
 ?>
 
-<div class="container">
+<div class="container-fluid">
     <h3>Departemen dan Bagian</h3>
 <hr>
 <button class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModalInput"><i class="fas fa-plus" style="margin-right:10px;"></i>Tambah</button><br><br>

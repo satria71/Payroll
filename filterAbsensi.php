@@ -23,7 +23,7 @@
     include 'pager.php';
 ?>
 
-<div class="container">
+<div class="container-fluid">
     <h3>Data Absensi</h3>
 <hr>
 
@@ -53,48 +53,61 @@
         <tr>
             <th>No</th>
             <th>Nama</th>
+            <th>Bagian</th>
             <th>Departemen</th>
+            <!-- <th>Tanggal & Jam</th> -->
             <th>Tanggal</th>
-            <th>Masuk</th>
-            <th>Keluar</th>
-            <th>Jumlah Jam</th>
+            <th>Jam</th>
+            <th>Status Jam</th>
             <th>Action</th>                         
         </tr>
     </thead>  
 <tbody>
 
 <?php 
-
     $tgl_awal = $_POST["tgl_awal"];
     $tgl_akhir = $_POST["tgl_akhir"];
-    $sql = "select id, nama, departemen, tanggal, masuk, keluar, jumlah_jam
-        from tb_karyawan, tb_departemen, tb_absensi 
-        where tb_karyawan.nik = tb_absensi.nik and tb_departemen.kode_departemen = tb_absensi.kode_departemen
-        and (tanggal BETWEEN '$tgl_awal' AND '$tgl_akhir')";
+    $sql = "SELECT tb_finger.userid, nama, bagian, departemen, tanggal_jam, tb_finger.status
+    FROM tb_finger, tb_bagian, tb_departemen, tb_karyawan2
+    WHERE tb_finger.userid=tb_karyawan2.userid AND tb_bagian.kode_departemen=tb_departemen.kode_departemen 
+    AND tb_bagian.kode_bagian=tb_karyawan2.kode_bagian and (tanggal_jam BETWEEN '$tgl_awal' AND '$tgl_akhir') ORDER BY tanggal_jam ASC";
     
     $query = mysqli_query($con, $sql);
     $no = 1;
     while ($data = mysqli_fetch_assoc($query)){
+        $time = new DateTime($data['tanggal_jam']);
+        $date = $time->format('d-m-Y');
+        $times = $time->format('H:i:s');
 ?>
 
 <tr>
     <td><?php echo $no++; ?></td>
     <td><?php echo $data['nama']; ?></td>
+    <td><?php echo $data['bagian']; ?></td>
     <td><?php echo $data['departemen']; ?></td>
-    <td><?php echo $data['tanggal']; ?></td>
-    <td><?php echo $data['masuk']; ?></td>
-    <td><?php echo $data['keluar']; ?></td>
-    <td><?php echo $data['jumlah_jam']; ?></td>
+    <!-- <td><?php echo $data['tanggal_jam']; ?></td> -->
+    <td><?php echo $date; ?></td>
+    <td><?php echo $times; ?></td>
+    <td>
+        <?php
+            if($data['status']==1){
+                echo "Keluar";
+            }else{
+                echo "Masuk";
+            }
+        ?>
+    </td>
+    <!-- <td><?php echo $data['verifikasi']; ?></td> -->
     <td>
     <!-- Button untuk modal edit -->
-    <!-- <a href="#" data-toggle="modal" data-target="#myModal<?php echo $data['id']; ?>">
+    <!-- <a href="#" data-toggle="modal" data-target="#myModal<?php echo $data['userid']; ?>">
         <button class="btn btn-success"><i class="fas fa-edit" style="margin-right:10px;"></i>Edit</button>
     </a> -->
     
     <!-- Button untuk delete -->
     <?php
-        $nip = $data["id"];
-        echo "<a href='proses/deleteAbsensi.php?id=$nip' class='btn btn-danger'><i class='fas fa-trash-alt' style='margin-right:10px;'></i>Delete</a>";
+        $userid = $data["userid"];
+        echo "<a href='proses/deleteAbsensi.php?id=$userid' class='btn btn-danger'><i class='fas fa-trash-alt' style='margin-right:10px;'></i>Delete</a>";
     ?>
     </td>
 </tr>

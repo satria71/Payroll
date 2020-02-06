@@ -48,15 +48,15 @@ exit;
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Karyawan</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
+                            <a href="showKaryawan2.php" target="iframe_a">Semua</a>
+                        </li>
+                        <li>
                             <a href="showKaryawanHr.php" target="iframe_a">Harian Lepas</a>
                         </li>
                         <li>
                             <a href="showKaryawanKontrak.php" target="iframe_a">Kontrak</a>
                         </li>
                     </ul>
-                </li>
-                <li>
-                    <a href="showDepartemen.php" target="iframe_a">Departemen</a>
                 </li>
                 <li>
                     <a href="showBagian.php" target="iframe_a">Bagian</a>
@@ -69,6 +69,9 @@ exit;
                 </li>
                 <li>
                     <a href="showPenggajian.php" target="iframe_a">Penggajian</a>
+                </li>
+                <li>
+                    <a href="soap-finger/tarikData.php" target="iframe_a">Tarik Data</a>
                 </li>
             </ul>
         </nav>

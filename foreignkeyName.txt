@@ -1,0 +1,8 @@
+Nama foreign key database payroll
+FK_penggajianAbsensi
+FK_karyawanJabatan
+FK_absensiDepartemen
+FK_jadwalDepartemen
+FK_bagianDepartemen
+FK_karyawan2Bagian
+FK_fingerKaryawan2

@@ -22,7 +22,7 @@
     include 'pager.php';
 ?>
 
-<div class="container">
+<div class="container-fluid">
     <h3>Penggajian</h3>
 <hr>
 <a href="#" type="button" class="btn btn-primary btn-md" style="margin-bottom:10px;" data-toggle="modal" data-target="#myModalInput">Tambah</a>
